@@ -35,6 +35,7 @@
 
     ?>  
     
+    
 
     <tr>
       <th scope="row"><?php echo $fila["codigo"] ?></th>
