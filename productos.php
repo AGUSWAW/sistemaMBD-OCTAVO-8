@@ -34,7 +34,8 @@
         while ($fila = mysqli_fetch_array($resultado)){
 
     ?>  
-    
+
+    pero
     
 
     <tr>
