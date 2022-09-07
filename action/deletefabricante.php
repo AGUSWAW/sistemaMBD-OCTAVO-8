@@ -2,11 +2,11 @@
 
 include('../connection/connection.php');
 
-$phpcodigoFabricante = $_Get['id'];
+$phpcodigofabricante = $_GET['id'];
 
-$deleteFabricante = "DELETE FROM fabricante WHERE codigo = '$phpcodigoFabricante'";
+$deletefabricante = "DELETE FROM fabricante WHERE codigo = '$phpcodigofabricante'";
 
-$resultado = mysqli_query($connection,$deleteFabricante);
+$resultado = mysqli_query($connection,$deletefabricante);
 
 header ('Location: ../fabricantes.php')
 
