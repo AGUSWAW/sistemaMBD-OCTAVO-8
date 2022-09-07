@@ -52,9 +52,6 @@ background-position: 0% 50%;
   </head>
   <body>
 
- 
-
-
 <div class="container">
 
  <!-- inicio formulario -->
@@ -75,6 +72,8 @@ background-position: 0% 50%;
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nombre</th>
+      <th scope="col">Eliminar</th>
+      <th scope="col">Editar</th>
     </tr>
   </thead>
   <tbody>
@@ -88,17 +87,16 @@ background-position: 0% 50%;
         $resultado = mysqli_query($connection,$consulta);
         //mientras haya algo de la tabla, seguria enlistando
         while ($fila = mysqli_fetch_array($resultado)){
-
     ?>  
     
-
-    <tr>
-      <th scope="row"><?php echo $fila["codigo"] ?></th>
-      <td><?php echo $fila["nombre"] ?></td>
-     
-    </tr>
-   
-        <?php } //cierre while ?>
+          <tr>
+                <th scope="row"><?php echo $fila["codigo"] ?></th>
+                <td><?php echo $fila["nombre"] ?></td>
+                <td><a href="action/deletefabricante?id=<?php echo $fila["codigo"] ?>" class="btn btn-danger">Eliminar</a></td>    
+                <td><a  class="btn btn-warning">Editar</a></td>     
+          
+          </tr>
+          <?php } //cierre while ?>
 
   </tbody>
 </table>
@@ -106,7 +104,7 @@ background-position: 0% 50%;
  </div>
 <!-- final tabla fabricante -->
 
-
+/>
 
 
 
