@@ -5,7 +5,7 @@
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'tienda';
+$database = 'carro';
 
 //query para conexion a DB
 // variables se pone el valor pedo $

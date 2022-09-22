@@ -8,12 +8,12 @@ if(isset($_POST['enviar'])){
 
     $phpNombre = $_POST['inputNombre'];
 
-    $insertFabricante = "INSERT INTO fabricante (nombre) Value('$phpNombre')";
+    $insertFabricante = "INSERT INTO empresa (nombre) Value('$phpNombre')";
 
     $resultado = mysqli_query($connection,$insertFabricante);
 
 }
 
-header ('location: ../fabricantes.php')
+header ('location: ../empresas.php')
 
 ?>

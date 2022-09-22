@@ -50,7 +50,7 @@ background-position: 0% 50%;
 
   
 
-    <title>PRODUCTO</title>
+    <title>MODELO</title>
   </head>
   <body>
 
@@ -61,33 +61,32 @@ background-position: 0% 50%;
 
 
  <!-- inicio formulario -->
- <form action="action/insertproducto.php" method="POST">
+ <form action="action/insertmodelo.php" method="POST">
   <div class="mb-3">
-       <label class="form-label">Nombre Producto </label>
+       <label class="form-label">Nombre Modelo </label>
       <input type="text" name="inputNombre" class="form-control">
       <br>
       <label class="form-label">Precio </label>
       <input type="number" name="inputPrecio" class="form-control">
       <br>
-       <label class="form-label">Proveedor </label>
+       <label class="form-label">Industria </label>
        
    <!--  </div> -->
-          <!--  select para los nombres de fabricantes -->
-        <select name="inputProveedor" class="form-select form-select-md">
-              <option selected>Seleccione Proveedor</option>
+          <!--  select para los nombres de modelos -->
+        <select name="inputIndustria" class="form-select form-select-md">
+              <option selected>Seleccione Modelo</option>
               <br>
                 <?php
                   //include es importa archio de conexion
                   include('connection/connection.php');
-                  //variable para enlistar toda la tabla de fabricante
-                  $consulta = "SELECT fabricante.codigo as codigo,
-                   fabricante.nombre as codigo_fabricante FROM fabricante";
+                  //variable para enlistar toda la tabla de modelos
+                  $consulta = "SELECT empresa.codigo as codigo, empresa.nombre as codigo_empresa FROM empresa";
                   //query de conexcion y query de listado
                   $resultado = mysqli_query($connection,$consulta);
                   //mientras haya algo de la tabla, seguria enlistando
                   while ($fila = mysqli_fetch_array($resultado)){
                ?>  
-                <option value="<?php echo $fila["codigo"] ?>"><?php echo $fila["codigo_fabricante"] ?></option>              
+                <option value="<?php echo $fila["codigo"] ?>"><?php echo $fila["codigo_empresa"] ?></option>              
                 <?php } //cierre while ?>
         
         </select>
@@ -98,14 +97,14 @@ background-position: 0% 50%;
 <!-- fin formulario -->
 <br>
 
-<!-- inicio tabla fabricantes -->
+<!-- inicio tabla modelos -->
   <table class="table table-success table-striped">
   <thead>
     <tr>
       <th scope="col">Codigo</th>
       <th scope="col">Nombre</th>
       <th scope="col">Precio</th>
-      <th scope="col">Proveedor</th>
+      <th scope="col">Industria</th>
       <th scope="col">Eliminar</th>
       <th scope="col">Editar</th>
     </tr>
@@ -116,9 +115,9 @@ background-position: 0% 50%;
      <?php
         //include es importa archio de conexion
         include('connection/connection.php');
-        //variable para enlistar toda la tabla de fabricante
-        $consulta = "SELECT producto.codigo, producto.nombre, precio, 
-        fabricante.nombre as codigo_fabricante FROM producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo";
+        //variable para enlistar toda la tabla de modelos
+        $consulta = "SELECT modelo.codigo, modelo.nombre, precio,
+        empresa.nombre as codigo_empresa FROM modelo INNER JOIN empresa ON modelo.codigo_empresa = empresa.codigo";
         //query de conexcion y query de listado
         $resultado = mysqli_query($connection,$consulta);
         //mientras haya algo de la tabla, seguria enlistando
@@ -132,9 +131,9 @@ background-position: 0% 50%;
       <th scope="row"><?php echo $fila["codigo"] ?></th>
       <td><?php echo $fila["nombre"] ?></td>
       <td><?php echo $fila["precio"] ?></td>
-      <td><?php echo $fila["codigo_fabricante"] ?></td>
-      <td><a href="action/deleteproducto.php?id=<?php echo $fila["codigo"] ?>" class="btn btn-danger">Eliminar</a></td>    
-      <td><a href="action/editarproducto.php?id=<?php echo $fila["codigo"] ?>" class="btn btn-warning">Editar</a></td>        
+      <td><?php echo $fila["codigo_empresa"] ?></td>
+      <td><a href="action/deletemodelo.php?id=<?php echo $fila["codigo"] ?>" class="btn btn-danger">Eliminar</a></td>    
+      <td><a href="action/editarmodelo.php?id=<?php echo $fila["codigo"] ?>" class="btn btn-warning">Editar</a></td>        
      
     </tr>
    
@@ -144,7 +143,7 @@ background-position: 0% 50%;
 </table>
 </div>
 
-<!-- final tabla fabricante -->
+<!-- final tabla modelos -->
 
 
 
