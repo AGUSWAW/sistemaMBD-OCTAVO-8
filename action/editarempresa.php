@@ -48,54 +48,39 @@ background-position: 0% 50%;
 </style>  
 <!-- Finaliza estilo de fondo CSS -->
 
-    <title>FABRICANTE</title>
+    <title>EDITAR EMPRESA</title>
   </head>
   <body>
 
 <div class="container">
 
- <!-- inicio formulario -->
- <form action="action/isertfabricante.php" method="POST">
-  <div class="mb-3">
-  <br>
-       <label class="form-label">Nombre fabricante</label>
-      <input type="text" name="inputNombre" class="form-control">
-    </div>
-     <button type="submit" name="enviar" class="btn btn-primary">Enviar</button>
-</form>
-<!-- fin formulario -->
-
-<br>
 <!-- inicio tabla -->
-  <table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Eliminar</th>
-      <th scope="col">Editar</th>
-    </tr>
-  </thead>
-  <tbody>
-
     <?php
         //include es importa archio de conexion
-        include('connection/connection.php');
+        include('../connection/connection.php');
+
+        $phpId = $_GET['id'];
+
         //variable para enlistar toda la tabla de fabricante
-        $consulta = "SELECT * FROM fabricante";
+        $consulta = "SELECT * FROM empresa WHERE codigo = '$phpId'";
         //query de conexcion y query de listado
         $resultado = mysqli_query($connection,$consulta);
         //mientras haya algo de la tabla, seguria enlistando
-        while ($fila = mysqli_fetch_array($resultado)){
+        $fila = mysqli_fetch_array($resultado)
     ?>  
+
+            
+            <form action="updateempresa.php" method="POST">
+            <div class="mb-3">
+            <br>
+                <label class="form-label">Nombre fabricante</label>
+                <input type="text" name="inputNombre" value="<?php echo $fila["nombre"] ?>" class="form-control">
+                <input type="hidden" name="inputId" value="<?php echo $fila["codigo"] ?>">
+                </div>
+                <button type="submit" name="actualizar" class="btn btn-primary">Actualizar</button>
+            </form>
     
-          <tr>
-                <th scope="row"><?php echo $fila["codigo"] ?></th>
-                <td><?php echo $fila["nombre"] ?></td>
-                <td><a href="action/deletefabricante.php?id=<?php echo $fila["codigo"] ?>" class="btn btn-danger">Eliminar</a></td>    
-                <td><a href="action/editarfabricante.php?id=<?php echo $fila["codigo"] ?>" class="btn btn-warning">Editar</a></td>                     
-          </tr>
-          <?php } //cierre while ?>
+        
 
   </tbody>
 </table>

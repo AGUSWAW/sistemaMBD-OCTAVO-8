@@ -62,38 +62,37 @@ background-position: 0% 50%;
         $phpId = $_GET['id'];
 
         //variable para enlistar toda la tabla de fabricante
-        $consulta = "SELECT * FROM producto WHERE codigo = '$phpId'";
+        $consulta = "SELECT * FROM modelo WHERE codigo = '$phpId'";
         //query de conexcion y query de listado
         $resultado = mysqli_query($connection,$consulta);
         //mientras haya algo de la tabla, seguria enlistando
         $fila = mysqli_fetch_array($resultado)
     ?>  
         
-            <form action="updateproducto.php" method="POST">
+            <form action="updatemodelo.php" method="POST">
             <div class="mb-3">
             <br>
-                <label class="form-label">Nombre producto</label>
+                <label class="form-label">Nombre modelo</label>
                 <input type="text" name="inputNombre" value="<?php echo $fila["nombre"] ?>" class="form-control">
                 <br>
                 <label class="form-label">Precio</label>
                 <input type="text" name="inputPrecio" value="<?php echo $fila["precio"] ?>" class="form-control">
                 <br>
                
-                <select name="inputProveedor" class="form-select form-select-md">
-              <option selected>Seleccione Proveedor</option>
+                <select name="inputIndustria" class="form-select form-select-md">
+              <option selected>Seleccione Modelo</option>
               <br>
                 <?php
                   //include es importa archio de conexion
                   include('connection/connection.php');
                   //variable para enlistar toda la tabla de fabricante
-                  $consulta = "SELECT fabricante.codigo as codigo,
-                   fabricante.nombre as codigo_fabricante FROM fabricante";
+                  $consulta = "SELECT empresa.codigo as codigo, empresa.nombre as codigo_empresa FROM empresa";
                   //query de conexcion y query de listado
                   $resultado = mysqli_query($connection,$consulta);
                   //mientras haya algo de la tabla, seguria enlistando
                   while ($fila = mysqli_fetch_array($resultado)){
                ?>  
-                <option value="<?php echo $fila["codigo"] ?>"><?php echo $fila["codigo_fabricante"] ?></option>              
+                <option value="<?php echo $fila["codigo"] ?>"><?php echo $fila["codigo_empresa"] ?></option>              
                 <?php } //cierre while ?>
 
           
